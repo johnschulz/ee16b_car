@@ -45,19 +45,19 @@ encoder_t right_encoder = {RIGHT_ENCODER, 0, LOW, 0};
 /*       with changes        */
 /*---------------------------*/
 
-float theta_left  = 0.2476;
-float theta_right = 0.2451;
-float beta_left   = 29.8;
-float beta_right  = 38.59;
-float v_star      = 79.8;
+float theta_left  = 0.2903;
+float theta_right = 0.2646;
+float beta_left   = 13.19;
+float beta_right  = 22.22;
+float v_star      = 69.2;
 
 // PWM inputs to jolt the car straight
 int left_jolt  = 240;
 int right_jolt = 210;
 
 // Control gains
-float k_left  = -0.75;
-float k_right =  0.75;
+float k_left  = -0.6;
+float k_right =  0.6;
 
 /*---------------------------*/
 /*      CODE BLOCK CON2      */
