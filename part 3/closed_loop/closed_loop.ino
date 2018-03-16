@@ -45,30 +45,32 @@ encoder_t right_encoder = {RIGHT_ENCODER, 0, LOW, 0};
 /*       with changes        */
 /*---------------------------*/
 
-float theta_left = ;
-float theta_right = ;
-float beta_left = ;
-float beta_right = ;
-float v_star = ;
+float theta_left  = 0.2476;
+float theta_right = 0.2451;
+float beta_left   = 29.8;
+float beta_right  = 38.59;
+float v_star      = 79.8;
 
 // PWM inputs to jolt the car straight
-int left_jolt = ;
-int right_jolt= ;
+int left_jolt  = 240;
+int right_jolt = 210;
 
 // Control gains
-float k_left = ;
-float k_right = ;
+float k_left  = -0.75;
+float k_right =  0.75;
 
 /*---------------------------*/
 /*      CODE BLOCK CON2      */
 /*---------------------------*/
 
-float driveStraight_left(float v_star, float delta) {
-  return ;
+float driveStraight_left(float v_star, float delta)
+{
+    return ((v_star + beta_left) + (k_left*delta)) / theta_left;
 }
 
-float driveStraight_right(float v_star, float delta) {
-  return ;
+float driveStraight_right(float v_star, float delta)
+{
+    return ((v_star + beta_right) + (k_right*delta)) / theta_right;    
 }
 
 /*---------------------------*/
@@ -127,8 +129,8 @@ void loop(void) {
 
       // Drive straight using feedback
       // Compute the needed pwm values for each wheel using delta and v_star
-      int left_cur_pwm = ;
-      int right_cur_pwm = ;
+      int left_cur_pwm = driveStraight_left(v_star, delta);
+      int right_cur_pwm = driveStraight_right(v_star, delta);
       write_pwm(left_cur_pwm, right_cur_pwm);
 
       /*---------------------------*/
