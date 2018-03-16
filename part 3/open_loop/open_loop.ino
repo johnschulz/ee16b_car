@@ -20,26 +20,26 @@ unsigned long end_time = 0;
 /*      CODE BLOCK CON1      */
 /*---------------------------*/
 
-float theta_left = ;
-float theta_right = ;
-float beta_left = ;
-float beta_right = ;
-float v_star = ;
+float theta_left = 0.2476;
+float theta_right = 0.2451;
+float beta_left = -29.8;
+float beta_right = -38.59;
+float v_star = 79.8;
 
 // PWM inputs to jolt the car straight
-int left_jolt = ;
-int right_jolt = ;
+int left_jolt = 240;
+int right_jolt = 210;
 
 /*---------------------------*/
 /*      CODE BLOCK CON2      */
 /*---------------------------*/
 
 float driveStraight_left(float v_star) {
-  return ;
+    return (v_star + beta_left) / theta_left;
 }
 
 float driveStraight_right(float v_star) {
-  return ;
+    return (v_star + beta_right) / theta_right;
 }
 
 /*---------------------------*/
@@ -65,8 +65,8 @@ void setup(void) {
 
   // Attempt to drive straight using open loop control
   // Compute the PWM input required for each wheel based on v_star
-  int left_cur_pwm = ;
-  int right_cur_pwm = ;
+  int left_cur_pwm = driveStraight_left(v_star);
+  int right_cur_pwm = driveStraight_right(v_star);
   write_pwm(left_cur_pwm, right_cur_pwm);
 
   /*---------------------------*/
