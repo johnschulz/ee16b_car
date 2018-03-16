@@ -22,8 +22,8 @@ unsigned long end_time = 0;
 
 float theta_left = 0.2476;
 float theta_right = 0.2451;
-float beta_left = -29.8;
-float beta_right = -38.59;
+float beta_left = 29.8;
+float beta_right = 38.59;
 float v_star = 79.8;
 
 // PWM inputs to jolt the car straight
