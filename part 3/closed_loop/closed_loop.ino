@@ -21,6 +21,7 @@
 #define JOLT_STEPS                  2
 
 int step_num = 0;
+int count = 0;
 volatile boolean do_loop = 0; // timer signal to increment timestep
 
 int16_t deltaArr[SAMPLE_LEN] = {0};
@@ -45,19 +46,19 @@ encoder_t right_encoder = {RIGHT_ENCODER, 0, LOW, 0};
 /*       with changes        */
 /*---------------------------*/
 
-float theta_left  = 0.2903;
-float theta_right = 0.2646;
-float beta_left   = 13.19;
-float beta_right  = 22.22;
-float v_star      = 69.2;
+float theta_left = 0.2356;
+float theta_right = 0.2389;
+float beta_left = -29.43;
+float beta_right = -19.26;
+float v_star      = 68.3;
 
 // PWM inputs to jolt the car straight
-int left_jolt  = 240;
-int right_jolt = 210;
+int left_jolt  = 210;
+int right_jolt = 240;
 
 // Control gains
-float k_left  = -0.6;
-float k_right =  0.6;
+float k_left  = -0.7;
+float k_right =  0.7;
 
 /*---------------------------*/
 /*      CODE BLOCK CON2      */
@@ -77,7 +78,7 @@ float driveStraight_right(float v_star, float delta)
 /*      CODE BLOCK CON3      */
 /*---------------------------*/
 
-float delta_ss = 0;
+float delta_ss = -0.5;
 
 /*---------------------------*/
 /*---------------------------*/
@@ -142,6 +143,11 @@ void loop(void) {
       deltaArr[step_num] = delta;
       lpwm[step_num] = left_cur_pwm;
       rpwm[step_num] = right_cur_pwm;
+
+//      if(step_num > 5)
+//      {
+//        delta_ss = (delta_ss * count + delta)/++count;
+//      }
 
       step_num++;
     }
