@@ -96,15 +96,16 @@ def run(filename):
   print('Collecting data... Please wait.')
 
   
-
+  trial = 0
   while(True):
     samples = []
+    trial += 1
     while (not re.match("Start", ser.readline().decode())):
       pass
     for i in range(172):
       samples.append((float)(ser.readline().decode().rstrip('\n')))
     save_txt(samples, filename)
-    print('Done writing to ' + filename)
+    print(trial, 'Done writing to ' + filename)
 
   ser.close()
 
