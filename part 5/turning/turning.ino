@@ -52,31 +52,33 @@ encoder_t right_encoder = {RIGHT_ENCODER, 0, LOW, 0};
 /*        with changes       */
 /*---------------------------*/
 
-float theta_left = ;
-float theta_right = ;
-float beta_left = ;
-float beta_right = ;
-float v_star = ;
+float theta_left = 0.2356;
+float theta_right = 0.2389;
+float beta_left = -29.43;
+float beta_right = -19.26;
+float v_star      = 68.3;
 
 // PWM inputs to jolt the car straight
-int left_jolt = ;
-int right_jolt = ;
+int left_jolt  = 210;
+int right_jolt = 240;
 
 // Control gains
-float k_left = ;
-float k_right = ;
+float k_left  = -0.7;
+float k_right =  0.7;
 
 /*---------------------------*/
 /*      CODE BLOCK CON2      */
 /*    From closed_loop.ino   */
 /*---------------------------*/
 
-float driveStraight_left(float delta) {
-  return ;
+float driveStraight_left(float delta)
+{
+    return ((v_star + beta_left) + (k_left*delta)) / theta_left;
 }
 
-float driveStraight_right(float delta) {
-  return ;
+float driveStraight_right(float delta)
+{
+    return ((v_star + beta_right) + (k_right*delta)) / theta_right;    
 }
 
 /*---------------------------*/
@@ -84,7 +86,7 @@ float driveStraight_right(float delta) {
 /*    From closed_loop.ino   */
 /*---------------------------*/
 
-float delta_ss = ;
+float delta_ss = -0.5;
 
 /*---------------------------*/
 /*      CODE BLOCK CON4      */
@@ -99,13 +101,13 @@ int run_times[4] = {7000, 5000, 2500, 5000};
 float delta_reference(int k) {
   // YOUR CODE HERE
   if (drive_mode == DRIVE_RIGHT) {
-    return ;
+    return CAR_WIDTH* v_star * k / 5.0 / TURN_RADIUS;
   }
   else if (drive_mode == DRIVE_LEFT) {
-    return ;
+    return - CAR_WIDTH* v_star * k / 5.0 / TURN_RADIUS;;
   }
   else { // DRIVE_FAR, DRIVE_CLOSE
-    return ;
+    return 0;
   }
 }
 
