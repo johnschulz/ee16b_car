@@ -258,4 +258,3 @@ void setTimer(void) {
   TA2CCTL0 = CCIE;
   __bis_SR_register(GIE);
   TA2CTL = TASSEL_2 + MC_1 + TACLR + ID_0;
-}
